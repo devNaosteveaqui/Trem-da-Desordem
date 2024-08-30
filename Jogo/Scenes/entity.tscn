@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://cny6f6s83vrg"]
+
+[ext_resource type="Script" path="res://Scripts/entity.gd" id="1_vvi34"]
+[ext_resource type="Texture2D" uid="uid://gecw6mm26hob" path="res://block.png" id="2_wi6c5"]
+[ext_resource type="LabelSettings" uid="uid://dji51t0utb8aw" path="res://labelTextGame_f32o4s4.tres" id="4_jxhag"]
+[ext_resource type="LabelSettings" uid="uid://p2t5pf1gome5" path="res://labelTextGame.tres" id="4_v5xoq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrbc1"]
+radius = 32.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xlkue"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Number:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:sequence_blocks")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:nextBlock")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:numberV")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("TalkMessagess:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("RayCast2D:target_position")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:target_pos")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath(".:headQueue")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath(".:tailQueue")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("faceRay")]
+motion_mode = 1
+script = ExtResource("1_vvi34")
+faceRay = NodePath("RayCast2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hrbc1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wi6c5")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Number" type="Label" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("4_jxhag")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Nickname" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = -56.0
+offset_right = 48.0
+offset_bottom = -33.0
+grow_horizontal = 2
+label_settings = ExtResource("4_v5xoq")
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 32
+
+[node name="TalkMessagess" type="Label" parent="."]
+layout_direction = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+autowrap_mode = 3
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xlkue")

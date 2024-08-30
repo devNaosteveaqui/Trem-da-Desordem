@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dji51t0utb8aw"]
+
+[resource]
+line_spacing = 0.0
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.501961)
