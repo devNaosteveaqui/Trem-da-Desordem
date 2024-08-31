@@ -52,10 +52,10 @@ func par_disconectado(par_id):
 	rpc("remover_jogador",par_id)
 
 func queda_do_servidor():
-	#if Game.RUNNING:
-	if !get_tree().current_scene.get_node("CanvasLayer/Menu").visible:
-		if Game.RUNNING:
-			get_tree().reload_current_scene()
+	# reload provoca sentimentos estranhos no lado do client!
+	#if !get_tree().current_scene.get_node("CanvasLayer/Menu").visible:
+		#if Game.RUNNING:
+			#get_tree().reload_current_scene()
 	resetar_conexao("Parece que o servidor caiu, alguém ajuda ele!")
 
 @rpc("any_peer","call_local")

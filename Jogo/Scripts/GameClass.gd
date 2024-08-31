@@ -5,10 +5,10 @@ const MAP_POS : Vector2i = Vector2(-MAP_SIZE.x/2,-MAP_SIZE.y/2)
 const GROUP_PLAYER : String = "Player"
 const GROUP_BLOCK : String = "Bloco"
 const GROUP_ENEMY : String = "Enemy"
-enum MODE {SINGLE_PLAYER, MULTI_PLAYER}
+enum MODE {NOMODE,SINGLE_PLAYER, MULTI_PLAYER}
 
 var RUNNING : bool = false
-var MODE_SELECTED : MODE
+var MODE_SELECTED : MODE = MODE.NOMODE
 
 func isOutOfLimit(pos : Vector2):
 	var limit = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqbqfvgku6rh2"]
+[gd_scene load_steps=18 format=3 uid="uid://bqbqfvgku6rh2"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_rd26e"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="1_wqxjg"]
@@ -24,6 +24,11 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
 shadow_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_anv4v"]
+line_spacing = 0.0
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ygoi"]
 resource_name = "floor"
@@ -408,13 +413,71 @@ label_settings = ExtResource("7_am5nq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Voltar" type="TextureButton" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+texture_normal = ExtResource("3_hk8wc")
+texture_pressed = ExtResource("4_uposl")
+texture_hover = ExtResource("5_welup")
+texture_disabled = ExtResource("6_nakjl")
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/LAN/VBoxContainer/Voltar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Voltar"
+label_settings = ExtResource("7_am5nq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Message" type="Label" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
 layout_mode = 2
 label_settings = ExtResource("3_6ixe4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Control" type="Control" parent="CanvasLayer/Menu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -11.5
+offset_right = 44.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Desenvolvido por Samuel ( também conhecido como Naosteveaki)"
+label_settings = SubResource("LabelSettings_anv4v")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Menu/Control/Label"]
+show_behind_parent = true
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.501961)
+
 [node name="Debug" type="Control" parent="CanvasLayer"]
+visible = false
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 3
 anchors_preset = 2
@@ -457,3 +520,4 @@ spawn_path = NodePath("../TileMap")
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Desconectar" to="." method="_on_desconectar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]

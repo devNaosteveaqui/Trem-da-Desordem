@@ -26,5 +26,5 @@ func updateTimer():
 	text = str(time_left/60) + " : " + str(time_left%60)
 
 func reset_time():
-	time_left = 30#*60
+	time_left = 3*60
 	count_time = 0

@@ -39,7 +39,8 @@ func lista_alterada():
 			lista_jogadores.add_item(lista[i][1])
 
 func log_message(msg:String):
-	log.text += msg + "\n"
+	#log.text += msg + "\n"
+	pass
 
 func initSPGame():
 	Game.RUNNING = true
@@ -84,7 +85,7 @@ func spawn_entity(vars:Array):
 		return spawnBlock(e_number,e_pos)
 	return null
 	
-func spawnPlayer(p_name:String,p_number:int,p_pos:Vector2,id:int = -1):
+func spawnPlayer(p_name:String,p_number:int,p_pos:Vector2,id:int = 1):
 	log_message("<"+player_info.name+"> spawnPlayer")
 	var block = load("res://Scenes/entity.tscn").instantiate()
 	block.setName(p_name)
@@ -251,12 +252,16 @@ func _on_desconectar_pressed():
 	Network.interrupt_connection()
 
 func _on_retur_menu_pressed() -> void:
-	if multiplayer.is_server():
-		#rpc("resetar_jogo")
-		Network.rpc("resetar_conexao","")
+	if Game.MODE_SELECTED == Game.MODE.MULTI_PLAYER:
+		if multiplayer.is_server():
+			#rpc("resetar_jogo")
+			Network.rpc("resetar_conexao","")
+		else:
+			#resetar_jogo()
+			Network.resetar_conexao("")
 	else:
-		#resetar_jogo()
-		Network.resetar_conexao("")
+		conexao_resetada("")
+	
 
 func _on_iniciar_pressed():
 	#var peers = Network.get_lista()
@@ -320,6 +325,8 @@ func conexao_resetada(msg):
 		$CanvasLayer/Menu/VBoxContainer.hide()
 		$CanvasLayer/Menu/LAN.show()
 	else:
+		if Game.MODE_SELECTED == Game.MODE.SINGLE_PLAYER:
+			Game.MODE_SELECTED = Game.MODE.NOMODE
 		$CanvasLayer/Menu/VBoxContainer.show()
 		$CanvasLayer/Menu/LAN.hide()
 
@@ -355,8 +362,8 @@ func verifyName():
 
 func sortBlockPos():
 	var block_pos : Vector2 = Vector2(64,64)
-	block_pos.x = (randi()%Game.MAP_SIZE.x + Game.MAP_POS.x)*block_pos.x
-	block_pos.y = (randi()%Game.MAP_SIZE.y + Game.MAP_POS.y)*block_pos.y
+	block_pos.x = (randi()%(Game.MAP_SIZE.x-2) + Game.MAP_POS.x+1)*block_pos.x
+	block_pos.y = (randi()%(Game.MAP_SIZE.y-2) + Game.MAP_POS.y+1)*block_pos.y
 	return block_pos
 
 func generateFloor():
@@ -369,3 +376,12 @@ func generateFloor():
 			else:
 				#tilemap.set_cell(0,tile_pos,1,Vector2i(0,0),0)
 				tilemap.set_cell(tile_pos,1,Vector2i(0,0),0)
+
+func _on_voltar_pressed() -> void:
+	Game.MODE_SELECTED = Game.MODE.NOMODE
+	if multiplayer.is_server():
+		#rpc("resetar_jogo")
+		Network.rpc("resetar_conexao","")
+	else:
+		#resetar_jogo()
+		Network.resetar_conexao("")

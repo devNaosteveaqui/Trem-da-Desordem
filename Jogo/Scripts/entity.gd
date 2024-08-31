@@ -64,8 +64,6 @@ func setTailQueue(newTail:NodePath):
 
 @rpc("any_peer", "call_local")
 func setHeadQueue(newHead:NodePath):
-	if !get_node(newHead).is_in_group(Game.GROUP_ENEMY):
-		print(newHead)
 	headQueue = newHead
 
 func move(new_vel:Vector2):
