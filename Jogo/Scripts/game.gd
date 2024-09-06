@@ -164,7 +164,6 @@ func reset_Ranking():
 #@rpc("any_peer","call_local")
 func insert_on_ranking(ref):
 	log_message("<"+player_info.name+"> insert_on_ranking - ")
-	print(ref)
 	if ranking_score.size() == 0:
 		ranking_score.append(ref)
 	elif hasThisId(ref.id,ranking_score):

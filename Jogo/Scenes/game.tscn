@@ -325,6 +325,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Ip para se conectar"
 
+[node name="Iniciar" type="TextureButton" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_hk8wc")
+texture_pressed = ExtResource("4_uposl")
+texture_hover = ExtResource("5_welup")
+texture_disabled = ExtResource("6_nakjl")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/LAN/VBoxContainer/Iniciar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Começar partida"
+label_settings = ExtResource("7_am5nq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Host" type="TextureButton" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -369,28 +391,6 @@ label_settings = ExtResource("7_am5nq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Iniciar" type="TextureButton" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("3_hk8wc")
-texture_pressed = ExtResource("4_uposl")
-texture_hover = ExtResource("5_welup")
-texture_disabled = ExtResource("6_nakjl")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/Menu/LAN/VBoxContainer/Iniciar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Iniciar"
-label_settings = ExtResource("7_am5nq")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Desconectar" type="TextureButton" parent="CanvasLayer/Menu/LAN/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -428,7 +428,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Voltar"
+text = "Menu Inicial"
 label_settings = ExtResource("7_am5nq")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -516,8 +516,8 @@ spawn_path = NodePath("../TileMap")
 [connection signal="button_up" from="CanvasLayer/Menu/VBoxContainer/HBoxContainer/SinglePlayer" to="." method="selectSPMode"]
 [connection signal="button_up" from="CanvasLayer/Menu/VBoxContainer/HBoxContainer/Multiplayer" to="." method="selectMPMode"]
 [connection signal="visibility_changed" from="CanvasLayer/Menu/LAN" to="." method="_on_lan_visibility_changed"]
+[connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Connect" to="." method="_on_connect_pressed"]
-[connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Desconectar" to="." method="_on_desconectar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/LAN/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]

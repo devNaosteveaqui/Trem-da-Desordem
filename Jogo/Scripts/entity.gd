@@ -28,7 +28,7 @@ func _enter_tree() -> void:
 	if authoridade_id != null:
 		set_multiplayer_authority(authoridade_id)
 
-func _process(delta):
+func _process(_delta):
 	if flag_message:
 		message_cooldown-=1
 		if message_cooldown < 1:
@@ -172,12 +172,12 @@ func countScore():
 	print($Nickname.text,sequence_blocks)
 	
 	for id in list.size():
-		var value = list[id]
 		var finded = sequence_blocks.find(list[id],id_offset)
+		print(finded , " - ", id)
+		
 		if finded > -1:
 			score = score + 1
-			sequence_blocks.remove_at(finded)
-		
+			#sequence_blocks.remove_at(finded)
 		if finded == id:
 			score = score + 1
 			id_offset = finded + 1

@@ -99,7 +99,7 @@ func get_ip():
 		if lista_ip[i].begins_with("192"):
 			return lista_ip[i]
 	return IPPADRAO
-
-@rpc("any_peer","call_local")
-func debugHost(msg:String):
-	print(msg)
+#
+#@rpc("any_peer","call_local")
+#func debugHost(msg:String):
+	#print(msg)
